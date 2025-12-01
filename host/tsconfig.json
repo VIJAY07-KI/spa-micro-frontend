@@ -1,0 +1,26 @@
+{
+  "compilerOptions": {
+    "target": "ES6",
+    "module": "ESNext",
+    "lib": ["DOM", "ESNext"],
+    "jsx": "react-jsx",
+    "moduleResolution": "Node",
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "strict": true,
+    "forceConsistentCasingInFileNames": true,
+    "skipLibCheck": true,
+    "resolveJsonModule": true,
+    "noEmit": false,
+
+    "baseUrl": "./src",
+
+    "paths": {
+      "comments_app/*": ["./remoteTypes.d.ts"],
+      "story_app/*": ["./remoteTypes.d.ts"]
+    }
+  },
+
+  "include": ["src/**/*", "remoteTypes.d.ts"],
+  "exclude": ["node_modules", "dist"]
+}

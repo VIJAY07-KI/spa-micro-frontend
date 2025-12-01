@@ -1,0 +1,8 @@
+.comments-container { width: 380px; margin: auto; padding: 20px; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); }
+.comments-input, .comments-textarea { width: 100%; padding: 10px; margin: 8px 0; border-radius: 8px; border: 1px solid #ccc; }
+.comments-add-btn { width: 100%; padding: 10px; border: none; background: #007bff; color: white; border-radius: 6px; cursor: pointer; }
+.comments-list { list-style: none; padding: 0; }
+.comments-item { display: flex; justify-content: space-between; background: #f7f7f7; padding: 10px; margin-bottom: 8px; border-radius: 8px; }
+.comments-story { font-weight: bold; }
+.comments-text { margin-top: 4px; color: #444; }
+.comments-delete-btn { background: red; color: white; border: none; padding: 4px 8px; cursor: pointer; border-radius: 4px; }
