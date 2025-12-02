@@ -5,25 +5,46 @@ const { ModuleFederationPlugin } = require("webpack").container;
 module.exports = {
   entry: "./src/index.tsx",
   mode: "development",
-  output: { publicPath: "auto" },
-  resolve: { extensions: [".tsx", ".ts", ".js"] },
+
+  output: {
+    publicPath: "auto"
+  },
+
+  resolve: {
+    extensions: [".ts", ".tsx", ".js"]
+  },
+
   module: {
     rules: [
       { test: /\.css$/, use: ["style-loader", "css-loader"] },
       { test: /\.(ts|tsx)$/, loader: "ts-loader", exclude: /node_modules/ }
     ]
   },
-  devServer: { port: 9002, historyApiFallback: true },
+
+  devServer: {
+    port: 9002,
+    historyApiFallback: true,
+    headers: { "Access-Control-Allow-Origin": "*" }
+  },
+
   plugins: [
     new ModuleFederationPlugin({
       name: "story_app",
       filename: "remoteEntry.js",
-      exposes: { "./App": "./src/index.tsx" },
+
+      exposes: {
+        "./App": "./src/App.tsx"
+      },
+
+      // REMOTE MUST NOT SHARE REACT
       shared: {
-        react: { singleton: true, requiredVersion: "17.0.2"},
-        "react-dom": { singleton: true, requiredVersion: "17.0.2"}
+        react: { singleton: false, requiredVersion: false },
+        "react-dom": { singleton: false, requiredVersion: false }
       }
     }),
-    new HtmlWebpackPlugin({ template: path.resolve(__dirname, "index.ejs") })
+
+    new HtmlWebpackPlugin({
+      template: path.resolve(__dirname, "index.ejs")
+    })
   ]
 };

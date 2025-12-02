@@ -37,15 +37,10 @@ module.exports = {
         story_app: "story_app@http://localhost:9002/remoteEntry.js"
       },
 
+      // HOST SHARES REACT (React 17)
       shared: {
-        react: {
-          singleton: true,
-          requiredVersion: "17.0.2"
-        },
-        "react-dom": {
-          singleton: true,
-          requiredVersion: "17.0.2"
-        }
+        react: { singleton: true, requiredVersion: "17.0.2" },
+        "react-dom": { singleton: true, requiredVersion: "17.0.2" }
       }
     }),
 

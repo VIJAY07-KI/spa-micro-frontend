@@ -21,7 +21,7 @@ const App: React.FC = () => {
 
   return (
     <div className="comments-container">
-      <h2>Story + Comments</h2>
+      <h2>review & Comments for stories</h2>
       <input
         className="comments-input"
         value={story}
