@@ -4,16 +4,16 @@ const { ModuleFederationPlugin } = require("webpack").container;
 
 module.exports = {
   entry: "./src/index.tsx",
-  mode: "development",
-
+  mode: "production", // Use production for Vercel deployment
   output: {
-    publicPath: "auto"
+    filename: "bundle.js",
+    path: path.resolve(__dirname, "dist"),
+    publicPath: "auto",
+    clean: true
   },
-
   resolve: {
     extensions: [".ts", ".tsx", ".js"]
   },
-
   module: {
     rules: [
       {
@@ -22,33 +22,27 @@ module.exports = {
         use: "ts-loader"
       },
       {
-        test: /\.css$/,
+        test: /\.css$/i,
         use: ["style-loader", "css-loader"]
       }
     ]
   },
-
   plugins: [
     new ModuleFederationPlugin({
       name: "host",
-
       remotes: {
-        comments_app: "comments_app@http://localhost:9001/remoteEntry.js",
-        story_app: "story_app@http://localhost:9002/remoteEntry.js"
+        comments_app: "comments_app@https://comments-app-woad.vercel.app/remoteEntry.js",
+        story_app: "story_app@https://story-app-opal.vercel.app/remoteEntry.js"
       },
-
-      // HOST SHARES REACT (React 17)
       shared: {
         react: { singleton: true, requiredVersion: "17.0.2" },
         "react-dom": { singleton: true, requiredVersion: "17.0.2" }
       }
     }),
-
     new HtmlWebpackPlugin({
       template: "./public/index.html"
     })
   ],
-
   devServer: {
     port: 3000,
     historyApiFallback: true,
